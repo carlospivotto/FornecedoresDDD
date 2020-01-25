@@ -2,6 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aplicacao.Aplicacoes;
+using Aplicacao.Interfaces;
+using FornecedoresDDD.Dominio.Interfaces.Genericas;
+using FornecedoresDDD.Dominio.Interfaces.Produtos;
+using FornecedoresDDD.Infra.Dados.Repositorio.Genericos;
+using FornecedoresDDD.Infra.Dados.Repositorio.Produtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +30,10 @@ namespace FornecedoresDDD.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSingleton(typeof(InterfaceBase<>), typeof(RepositorioBase<>));
+            services.AddSingleton<ProdutoInterface, ProdutoRepositorio>();
+            services.AddSingleton<ProdutoAppInterface, ProdutoApp>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

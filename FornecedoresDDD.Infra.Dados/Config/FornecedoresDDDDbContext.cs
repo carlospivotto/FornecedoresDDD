@@ -10,6 +10,11 @@ namespace FornecedoresDDD.Infra.Dados.Config
     {
         public DbSet<Produto> Produtos { get; set; }
 
+        public FornecedoresDDDDbContext()
+        {
+
+        }
+
         public FornecedoresDDDDbContext(DbContextOptions<FornecedoresDDDDbContext> options) : base(options)
         {
 
