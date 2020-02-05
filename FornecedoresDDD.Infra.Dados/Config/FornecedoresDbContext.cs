@@ -28,6 +28,11 @@ namespace FornecedoresDDD.Infra.Dados.Config
             base.OnConfiguring(optionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Produto>().Property(p => p.Preco).HasColumnType("decimal(6,2)").IsRequired(true);
+        }
+
         private string GetConnectionString()
         {
             //Alterar para configurações desejadas:

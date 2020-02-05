@@ -24,7 +24,7 @@ namespace FornecedoresDDD.Infra.Dados.Repositorio.Genericos
                 try
                 {
                     db.Set<T>().Add(obj);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -47,7 +47,7 @@ namespace FornecedoresDDD.Infra.Dados.Repositorio.Genericos
             using (var db = new FornecedoresDbContext(_optionsBuilder))
             {
                 db.Set<T>().Update(obj);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -56,7 +56,7 @@ namespace FornecedoresDDD.Infra.Dados.Repositorio.Genericos
             using (var db = new FornecedoresDbContext(_optionsBuilder))
             {
                 db.Set<T>().Remove(obj);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
