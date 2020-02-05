@@ -4,8 +4,9 @@ using System.Text;
 
 namespace FornecedoresDDD.Dominio.Entidades
 {
-    public class Produto : EntidadeBase
+    public class Produto
     {
+        public Guid Id { get; set; }
         public string Nome { get; set; }
         public decimal Preco { get; set; }
     }

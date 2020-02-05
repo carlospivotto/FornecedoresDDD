@@ -11,23 +11,23 @@ namespace FornecedoresDDD.MVC.Controllers
 {
     public class ProdutoMVCController : Controller
     {
-        private readonly ProdutoAppInterface _produtoAppInterface;
+        private readonly IProdutoApp _produtoApp;
 
-        public ProdutoMVCController(ProdutoAppInterface produtoAppInterface)
+        public ProdutoMVCController(IProdutoApp produtoApp)
         {
-            _produtoAppInterface = produtoAppInterface;
+            _produtoApp = produtoApp;
         }
 
         // GET: ProdutoMVC
         public ActionResult Index()
         {
-            return View(_produtoAppInterface.Listar());
+            return View(_produtoApp.Listar());
         }
 
         // GET: ProdutoMVC/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            return View(_produtoApp.RecuperarPorId(id));
         }
 
         // GET: ProdutoMVC/Create
@@ -44,18 +44,19 @@ namespace FornecedoresDDD.MVC.Controllers
             try
             {
                 produto.Id = Guid.NewGuid();
-                _produtoAppInterface.Adicionar(produto);
+                _produtoApp.Adicionar(produto);
 
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return View();
             }
         }
 
         // GET: ProdutoMVC/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             return View();
         }
@@ -63,7 +64,7 @@ namespace FornecedoresDDD.MVC.Controllers
         // POST: ProdutoMVC/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
@@ -78,7 +79,7 @@ namespace FornecedoresDDD.MVC.Controllers
         }
 
         // GET: ProdutoMVC/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
             return View();
         }
@@ -86,7 +87,7 @@ namespace FornecedoresDDD.MVC.Controllers
         // POST: ProdutoMVC/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {

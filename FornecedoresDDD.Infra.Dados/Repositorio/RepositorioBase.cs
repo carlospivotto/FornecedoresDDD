@@ -1,4 +1,4 @@
-﻿using FornecedoresDDD.Dominio.Interfaces.Genericas;
+﻿using FornecedoresDDD.Dominio.Interfaces;
 using FornecedoresDDD.Infra.Dados.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,27 +8,35 @@ using System.Text;
 
 namespace FornecedoresDDD.Infra.Dados.Repositorio.Genericos
 {
-    public class RepositorioBase<T> : InterfaceBase<T>, IDisposable where T : class
+    public class RepositorioBase<T> : IBase<T>, IDisposable where T : class
     {
-        private readonly DbContextOptions<FornecedoresDDDDbContext> _optionsBuilder;
+        private readonly DbContextOptions<FornecedoresDbContext> _optionsBuilder;
 
         public RepositorioBase()
         {
-            _optionsBuilder = new DbContextOptions<FornecedoresDDDDbContext>();
+            _optionsBuilder = new DbContextOptions<FornecedoresDbContext>();
         }
 
         public void Adicionar(T obj)
         {
-            using (var db = new FornecedoresDDDDbContext(_optionsBuilder))
+            using (var db = new FornecedoresDbContext(_optionsBuilder))
             {
-                db.Set<T>().Add(obj);
-                db.SaveChangesAsync();
+                try
+                {
+                    db.Set<T>().Add(obj);
+                    db.SaveChangesAsync();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                
             }
         }
 
         public T RecuperarPorId(Guid id)
         {
-            using (var db = new FornecedoresDDDDbContext(_optionsBuilder))
+            using (var db = new FornecedoresDbContext(_optionsBuilder))
             {
                 return db.Set<T>().Find(id);
             }
@@ -36,7 +44,7 @@ namespace FornecedoresDDD.Infra.Dados.Repositorio.Genericos
 
         public void Atualizar(T obj)
         {
-            using (var db = new FornecedoresDDDDbContext(_optionsBuilder))
+            using (var db = new FornecedoresDbContext(_optionsBuilder))
             {
                 db.Set<T>().Update(obj);
                 db.SaveChangesAsync();
@@ -45,7 +53,7 @@ namespace FornecedoresDDD.Infra.Dados.Repositorio.Genericos
 
         public void Excluir(T obj)
         {
-            using (var db = new FornecedoresDDDDbContext(_optionsBuilder))
+            using (var db = new FornecedoresDbContext(_optionsBuilder))
             {
                 db.Set<T>().Remove(obj);
                 db.SaveChangesAsync();
@@ -54,7 +62,7 @@ namespace FornecedoresDDD.Infra.Dados.Repositorio.Genericos
 
         public IList<T> Listar()
         {
-            using (var db = new FornecedoresDDDDbContext(_optionsBuilder))
+            using (var db = new FornecedoresDbContext(_optionsBuilder))
             {
                 return db.Set<T>().AsNoTracking().ToList();
             }

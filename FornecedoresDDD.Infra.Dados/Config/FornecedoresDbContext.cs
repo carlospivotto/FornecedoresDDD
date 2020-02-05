@@ -6,16 +6,16 @@ using System.Text;
 
 namespace FornecedoresDDD.Infra.Dados.Config
 {
-    public class FornecedoresDDDDbContext : DbContext
+    public class FornecedoresDbContext : DbContext
     {
         public DbSet<Produto> Produtos { get; set; }
 
-        public FornecedoresDDDDbContext()
+        public FornecedoresDbContext()
         {
 
         }
 
-        public FornecedoresDDDDbContext(DbContextOptions<FornecedoresDDDDbContext> options) : base(options)
+        public FornecedoresDbContext(DbContextOptions<FornecedoresDbContext> options) : base(options)
         {
 
         }
@@ -31,7 +31,7 @@ namespace FornecedoresDDD.Infra.Dados.Config
         private string GetConnectionString()
         {
             //Alterar para configurações desejadas:
-            return "Server=(localdb)\\MSSQLLocalDB;Database=FornecedoresDDD;Trusted_Connection=True;";
+            return "Server=(localdb)\\MSSQLLocalDB;Database=FornecedoresDDD;Trusted_Connection=True;MultipleActiveResultSets=True;";
         }
     }
 }

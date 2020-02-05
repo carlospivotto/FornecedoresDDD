@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Aplicacao.Interfaces
 {
-    public interface InterfaceAppBase<T> where T : class
+    public interface IBaseApp<T> where T : class
     {
         void Adicionar(T obj);
 

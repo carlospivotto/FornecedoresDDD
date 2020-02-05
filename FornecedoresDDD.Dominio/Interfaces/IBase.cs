@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FornecedoresDDD.Dominio.Interfaces.Genericas
+namespace FornecedoresDDD.Dominio.Interfaces
 {
-    public interface InterfaceBase<T> where T : class
+    public interface IBase<T> where T : class
     {
         void Adicionar(T obj);
 

@@ -1,17 +1,17 @@
 ﻿using Aplicacao.Interfaces;
 using FornecedoresDDD.Dominio.Entidades;
-using FornecedoresDDD.Dominio.Interfaces.Produtos;
+using FornecedoresDDD.Dominio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Aplicacao.Aplicacoes
 {
-    public class ProdutoApp : ProdutoAppInterface
+    public class ProdutoApp : IProdutoApp
     {
-        ProdutoInterface _produtoInterface;
+        IProduto _produtoInterface;
 
-        public ProdutoApp(ProdutoInterface produtoInterface)
+        public ProdutoApp(IProduto produtoInterface)
         {
             _produtoInterface = produtoInterface;
         }

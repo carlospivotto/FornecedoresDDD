@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FornecedoresDDD.Infra.Dados.Migrations
 {
-    [DbContext(typeof(FornecedoresDDDDbContext))]
-    [Migration("20200125043253_initial")]
-    partial class initial
+    [DbContext(typeof(FornecedoresDbContext))]
+    [Migration("20200205144415_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
