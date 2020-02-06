@@ -58,18 +58,18 @@ namespace FornecedoresDDD.MVC.Controllers
         // GET: ProdutoMVC/Edit/5
         public ActionResult Edit(Guid id)
         {
-            return View();
+            return View(_produtoApp.RecuperarPorId(id));
         }
 
         // POST: ProdutoMVC/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Guid id, IFormCollection collection)
+        public ActionResult Edit(Produto produto)
         {
             try
             {
                 // TODO: Add update logic here
-
+                _produtoApp.Atualizar(produto);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -81,18 +81,18 @@ namespace FornecedoresDDD.MVC.Controllers
         // GET: ProdutoMVC/Delete/5
         public ActionResult Delete(Guid id)
         {
-            return View();
+            return View(_produtoApp.RecuperarPorId(id));
         }
 
         // POST: ProdutoMVC/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Guid id, IFormCollection collection)
+        public ActionResult Delete(Produto produto)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                _produtoApp.Excluir(produto);
                 return RedirectToAction(nameof(Index));
             }
             catch
