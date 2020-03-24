@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FornecedoresDDD.Dominio", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FornecedoresDDD.Infra.Dados", "FornecedoresDDD.Infra.Dados\FornecedoresDDD.Infra.Dados.csproj", "{583B583C-45D3-4994-B06D-0D4A1276B027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FornecedoresDDD.Aplicacao", "Aplicacao\FornecedoresDDD.Aplicacao.csproj", "{BA212CFE-8072-4297-9E4C-0C2E3A2999F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FornecedoresDDD.Aplicacao", "Aplicacao\FornecedoresDDD.Aplicacao.csproj", "{BA212CFE-8072-4297-9E4C-0C2E3A2999F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

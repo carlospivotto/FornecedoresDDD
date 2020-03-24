@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
 
 namespace FornecedoresDDD.MVC
 {
@@ -31,6 +32,7 @@ namespace FornecedoresDDD.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddSingleton(typeof(IBase<>), typeof(RepositorioBase<>));
             services.AddSingleton<IProduto, ProdutoRepositorio>();

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Aplicacao.Interfaces;
+using AutoMapper;
 using FornecedoresDDD.Dominio.Entidades;
+using FornecedoresDDD.MVC.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,22 +14,27 @@ namespace FornecedoresDDD.MVC.Controllers
     public class ProdutoMVCController : Controller
     {
         private readonly IProdutoApp _produtoApp;
+        private readonly IMapper _mapper;
 
-        public ProdutoMVCController(IProdutoApp produtoApp)
+        public ProdutoMVCController(IProdutoApp produtoApp, IMapper mapper)
         {
             _produtoApp = produtoApp;
+            _mapper = mapper;
+
         }
 
         // GET: ProdutoMVC
         public ActionResult Index()
         {
-            return View(_produtoApp.Listar());
+            var produtos = _mapper.Map<ProdutoViewModel>(_produtoApp.Listar());
+            return View(produtos);
         }
 
         // GET: ProdutoMVC/Details/5
         public ActionResult Details(Guid id)
         {
-            return View(_produtoApp.RecuperarPorId(id));
+            var produto = _mapper.Map<ProdutoViewModel>(_produtoApp.RecuperarPorId(id));
+            return View(produto);
         }
 
         // GET: ProdutoMVC/Create
